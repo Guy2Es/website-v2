@@ -8,29 +8,35 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #FFFFFF;
+    color: var(--dark-gray);
+    background-color: var(--warm-bg);
 }
 
 /* Variables de couleur */
 :root {
-    --primary-color: #57F79B;
+    --primary-color: #8ECAE6; /* Bleu clair principal */
+    --secondary-color: #219EBC; /* Bleu moyen */
+    --accent-color: #023047; /* Bleu marine foncé */
+    --warm-accent: #FFB703; /* Orange doré */
+    --hover-color: #FB8500; /* Orange vif */
     --white: #FFFFFF;
-    --gray: #B0B0B0;
-    --dark-gray: #333333;
-    --light-gray: #F5F5F7;
+    --warm-white: #FEFEFE;
+    --gray: #6B8CAE; /* Gris bleuté */
+    --dark-gray: #023047; /* Bleu marine pour textes */
+    --light-gray: #F0F8FB; /* Bleu très clair */
+    --warm-bg: #FAFCFD; /* Fond légèrement bleuté */
 }
 
 /* Header et Navigation */
 .header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(254, 254, 254, 0.95);
     backdrop-filter: blur(20px);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(176, 176, 176, 0.2);
+    border-bottom: 1px solid rgba(142, 202, 230, 0.3);
 }
 
 .nav {
@@ -43,10 +49,93 @@ body {
     height: 80px;
 }
 
+/* Sélecteur de langue */
+.language-selector {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.language-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(142, 202, 230, 0.3);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.language-btn:hover {
+    background: rgba(142, 202, 230, 0.1);
+    border-color: rgba(142, 202, 230, 0.5);
+    transform: translateY(-1px);
+}
+
+.language-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.flag-icon {
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.flag-fr {
+    background: linear-gradient(to right, #002395 33%, #FFFFFF 33%, #FFFFFF 66%, #ED2939 66%);
+}
+
+.flag-us {
+    background: linear-gradient(to bottom, 
+        #B22234 0%, #B22234 7.7%, 
+        #FFFFFF 7.7%, #FFFFFF 15.4%, 
+        #B22234 15.4%, #B22234 23.1%, 
+        #FFFFFF 23.1%, #FFFFFF 30.8%, 
+        #B22234 30.8%, #B22234 38.5%, 
+        #FFFFFF 38.5%, #FFFFFF 46.2%, 
+        #B22234 46.2%, #B22234 53.9%, 
+        #FFFFFF 53.9%, #FFFFFF 61.6%, 
+        #B22234 61.6%, #B22234 69.3%, 
+        #FFFFFF 69.3%, #FFFFFF 77%, 
+        #B22234 77%, #B22234 84.7%, 
+        #FFFFFF 84.7%, #FFFFFF 92.4%, 
+        #B22234 92.4%);
+    position: relative;
+}
+
+.flag-us::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 53.8%;
+    background: #3C3B6E;
+}
+
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
 }
 
 .logo-text {
@@ -91,7 +180,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+    background: linear-gradient(135deg, var(--warm-bg) 0%, var(--light-gray) 100%);
     text-align: center;
     padding: 150px 0 100px;
 }
@@ -144,7 +233,7 @@ p {
 .btn {
     display: inline-block;
     padding: 15px 30px;
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: var(--white);
     text-decoration: none;
     border-radius: 25px;
@@ -156,19 +245,19 @@ p {
 }
 
 .btn:hover {
-    background: #45d485;
+    background: var(--primary-color);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(87, 247, 155, 0.3);
+    box-shadow: 0 10px 25px rgba(142, 202, 230, 0.4);
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
 }
 
 .btn-secondary:hover {
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: var(--white);
 }
 
@@ -194,24 +283,40 @@ p {
     background: var(--white);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 50px rgba(33, 158, 188, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    border: 2px solid rgba(142, 202, 230, 0.3);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 80px rgba(33, 158, 188, 0.25);
+    border-color: rgba(142, 202, 230, 0.5);
 }
 
 .service-card h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 20px;
+}
+
+/* Conteneur pour les boutons des cartes */
+.service-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.service-buttons .btn {
+    width: 100%;
+    max-width: 200px;
 }
 
 /* Offre spéciale */
 .special-offer {
-    background: linear-gradient(135deg, var(--primary-color), #45d485);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: var(--white);
     text-align: center;
     padding: 60px 40px;
@@ -271,15 +376,16 @@ p {
     color: var(--dark-gray);
     text-decoration: none;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(33, 158, 188, 0.1);
     transition: all 0.3s ease;
     font-weight: 500;
+    border: 1px solid rgba(142, 202, 230, 0.2);
 }
 
 .contact-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(33, 158, 188, 0.2);
+    color: var(--secondary-color);
 }
 
 .linkedin-icon {
@@ -289,7 +395,7 @@ p {
 
 /* Footer */
 .footer {
-    background: var(--dark-gray);
+    background: var(--accent-color);
     color: var(--white);
     text-align: center;
     padding: 40px 0;
@@ -303,11 +409,30 @@ p {
         padding: 20px;
     }
     
+    .nav-center {
+        order: 2;
+        margin-top: 20px;
+    }
+    
+    .nav-right {
+        order: 1;
+        margin-top: 10px;
+    }
+    
     .nav-links {
         margin-top: 20px;
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
+    }
+    
+    .language-selector {
+        gap: 5px;
+    }
+    
+    .language-btn {
+        padding: 6px 10px;
+        font-size: 12px;
     }
     
     .hero h1 {
